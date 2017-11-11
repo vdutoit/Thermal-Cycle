@@ -5,30 +5,30 @@ function [ETA XMASSFLOW DATEN DATEX DAT MASSFLOW COMBUSTION] = ST(P_e,options,di
 % inputs (given in OPTION) and based on a given electricity production P_e.
 % It returns the main results. It can as well plots graphs if input 
 % argument DISPLAY = true (<=> DISPLAY=1)
-%
+% ESSAI DE DYLAN
 % INPUTS (some inputs can be dependent on others => only one of these 2 can
 %         be activated)
 % P_E = electrical power output target [W]
 % OPTIONS is a structure containing :
 %   -options.nsout     [-] : Number of feed-heating 
 %   -options.reheat    [-] : Number of reheating
-%   -options.T_max     [°C] : Maximum steam temperature
-%   -options.T_cond_out[°C] : Condenseur cold outlet temperature
+%   -options.T_max     [?C] : Maximum steam temperature
+%   -options.T_cond_out[?C] : Condenseur cold outlet temperature
 %   -options.p3_hp     [bar] : Maximum pressure
 %   -options.drumFlag  [K] : if =1 then drum if =0 => no drum. 
 %   -options.eta_mec   [-] : mecanic efficiency of shafts bearings
 %   -options.comb is a structure containing combustion data : 
-%       -comb.Tmax     [°C] : maximum combustion temperature
+%       -comb.Tmax     [?C] : maximum combustion temperature
 %       -comb.lambda   [-] : air excess
 %       -comb.x        [-] : the ratio O_x/C. Example 0.05 in CH_1.2O_0.05
 %       -comb.y        [-] : the ratio H_y/C. Example 1.2 in CH_1.2O_0.05
 %   -options.p_3       [-] : High pressure after last reheating
 %   -options.x4        [-] : Vapor ratio [gaseous/liquid] (titre)
-%   -options.T0        [°C] : Reference temperature
-%   -options.TpinchSub [°C] : Temperature pinch at the subcooler
-%   -options.TpinchEx  [°C] : Temperature pinch at a heat exchanger
-%   -options.TpinchCond[°C] : Temperature pinch at condenser 
-%   -options.Tdrum     [°C] : drum temperature
+%   -options.T0        [?C] : Reference temperature
+%   -options.TpinchSub [?C] : Temperature pinch at the subcooler
+%   -options.TpinchEx  [?C] : Temperature pinch at a heat exchanger
+%   -options.TpinchCond[?C] : Temperature pinch at condenser 
+%   -options.Tdrum     [?C] : drum temperature
 %   -option.eta_SiC    [-] : Isotrenpic efficiency for compression
 %   -option.eta_SiT    [-] : Isotrenpic efficiency for Turbine
 % DISPLAY = 1 or 0. If 1, then the code should plot graphics. If 0, then 
@@ -61,7 +61,7 @@ function [ETA XMASSFLOW DATEN DATEX DAT MASSFLOW COMBUSTION] = ST(P_e,options,di
 %   -datex(6) : perte_chemex [W]
 %   -datex(7) : perte_transex[W]
 % DAT is a matrix containing :
-% dat = {T_1       , T_2       , ...       , T_4;  [°C]
+% dat = {T_1       , T_2       , ...       , T_4;  [?C]
 %        p_1       , p_2       , ...       , p_4;  [bar]
 %        h_1       , h_2       , ...       , h_4;  [kJ/kg]
 %        s_1       , s_2       , ...       , s_4;  [kJ/kg/K]
@@ -91,7 +91,7 @@ if nargin<3
     if nargin<2
         options = struct();
         if nargin<1
-            P_e = 250e6; % [W] Puissance énergétique de l'installation
+            P_e = 250e6; % [W] Puissance ?nerg?tique de l'installation
         end
     end
 end
@@ -101,7 +101,7 @@ end
 if isfield(options,'T_0')
     T_0 = options.T_0; % 273.15 + options.T_0; plutot non ? [K]
 else
-    T_0 = 288.15;  % [éC] %Celsius, REALLY ?
+    T_0 = 288.15;  % [?C] %Celsius, REALLY ?
 end
 
 if isfield(options,'nsout')
